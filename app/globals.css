@@ -459,3 +459,133 @@ h1, h2, h3, p { margin-top: 0; }
   .resource-assignment-main { padding: 12px; }
   .resource-assignment-top { align-items: flex-start; flex-direction: column; }
 }
+
+
+/* Power Platform people profiles and account trail */
+.project-card.health-attention::before { background: var(--amber); }
+.project-card.health-critical::before { background: var(--coral); }
+.health-badge { display: inline-flex; align-items: center; min-height: 25px; padding: 5px 9px; border-radius: 999px; font-size: 9px; font-weight: 780; white-space: nowrap; }
+.health-badge.health-ok { color: #087769; background: var(--teal-pale); }
+.health-badge.health-attention { color: #9a620e; background: var(--amber-pale); }
+.health-badge.health-critical { color: #b33f31; background: var(--coral-pale); }
+.project-current-status { min-height: 66px; margin: 15px 0 10px; }
+.project-current-status p { display: -webkit-box; overflow: hidden; margin: 9px 0 0; color: var(--ink-soft); font-size: 11px; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.project-skills { min-height: 54px; padding: 10px 11px; border: 1px solid #d9ebe7; border-radius: 10px; background: #f7fbfa; }
+.project-skills span { color: var(--teal); font: 730 8px "Cascadia Code", monospace; letter-spacing: .06em; text-transform: uppercase; }
+.project-skills p { display: -webkit-box; overflow: hidden; margin: 5px 0 0; color: var(--ink-soft); font-size: 10px; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.project-latest-update { width: 100%; display: grid; gap: 6px; margin-top: 13px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink-soft); background: var(--surface-2); text-align: left; cursor: pointer; transition: border-color .15s, background .15s; }
+.project-latest-update:hover { border-color: #a8d8cf; background: var(--teal-pale); }
+.project-latest-update > span { display: flex; align-items: center; gap: 6px; color: var(--teal); font: 720 8px "Cascadia Code", monospace; letter-spacing: .04em; text-transform: uppercase; }
+.project-latest-update svg { width: 12px; height: 12px; }
+.project-latest-update strong { display: -webkit-box; overflow: hidden; font-size: 10px; font-weight: 600; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.btn-track { height: 30px; padding: 0 10px; border: 1px solid #b7ddd6; color: var(--teal-dark); background: var(--teal-pale); font-size: 9px; }
+.btn-track:hover { border-color: var(--teal); }
+.btn-track svg { width: 13px; }
+.allocation-row-detailed { grid-template-columns: minmax(170px, 1.2fr) minmax(110px, .8fr) 84px 28px; }
+
+.resource-profile-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 13px; }
+.resource-profile-panel { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+.profile-panel-title { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
+.profile-panel-title > svg { width: 28px; height: 28px; padding: 6px; border-radius: 8px; color: var(--teal); background: var(--teal-pale); }
+.profile-panel-title span { color: var(--teal); font: 720 8px "Cascadia Code", monospace; letter-spacing: .06em; text-transform: uppercase; }
+.profile-panel-title h3 { margin: 3px 0 0; font-size: 14px; }
+.resource-skill-matrix { display: grid; max-height: 315px; overflow: auto; }
+.resource-skill-row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 9px; }
+.resource-skill-row:first-child { border-top: 0; }
+.resource-skill-row span { color: var(--ink-soft); }
+.resource-skill-row strong { color: var(--teal-dark); font-size: 9px; text-align: right; }
+.resource-skill-row.unknown { opacity: .55; }
+.resource-profile-details { display: grid; gap: 14px; margin: 0; }
+.resource-profile-details > div { padding-bottom: 13px; border-bottom: 1px solid var(--line); }
+.resource-profile-details > div:last-child { padding-bottom: 0; border-bottom: 0; }
+.resource-profile-details dt { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 8px; font-weight: 760; letter-spacing: .05em; text-transform: uppercase; }
+.resource-profile-details dt svg { width: 12px; color: var(--teal); }
+.resource-profile-details dd { margin: 7px 0 0; color: var(--ink-soft); font-size: 10px; line-height: 1.55; }
+.pre-line { white-space: pre-line; }
+
+.tracking-overview { display: grid; grid-template-columns: .7fr 1.8fr .55fr; overflow: hidden; border: 1px solid var(--line); border-radius: 13px; background: var(--surface-2); }
+.tracking-overview > div { min-width: 0; display: grid; align-content: center; gap: 6px; min-height: 72px; padding: 13px 16px; border-left: 1px solid var(--line); }
+.tracking-overview > div:first-child { border-left: 0; }
+.tracking-overview span:first-child { color: var(--muted); font-size: 8px; font-weight: 760; letter-spacing: .06em; text-transform: uppercase; }
+.tracking-overview strong:not(.health-badge) { overflow: hidden; color: var(--ink); font-size: 10px; line-height: 1.4; text-overflow: ellipsis; }
+.tracking-form { display: grid; gap: 13px; padding: 16px; border: 1px solid #b9ddd6; border-radius: 14px; background: linear-gradient(145deg, #f3faf8, #fbfdfc); }
+.tracking-form-title { display: flex; align-items: center; gap: 10px; }
+.tracking-form-title > svg { width: 30px; height: 30px; padding: 7px; border-radius: 9px; color: white; background: var(--teal); }
+.tracking-form-title > div { flex: 1; display: grid; gap: 2px; }
+.tracking-form-title strong { font-size: 12px; }
+.tracking-form-title span { color: var(--muted); font-size: 9px; }
+.field-row-3 { grid-template-columns: .7fr 1.15fr 1.15fr; }
+.tracking-form-footer { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 12px; }
+.tracking-form-footer .btn { height: 40px; }
+.account-trail { position: relative; display: grid; gap: 0; }
+.account-trail-heading { display: flex; align-items: center; justify-content: space-between; padding: 2px 0 14px; }
+.account-trail-heading > div { display: flex; align-items: center; gap: 7px; color: var(--teal); font-size: 9px; font-weight: 760; letter-spacing: .06em; text-transform: uppercase; }
+.account-trail-heading svg { width: 14px; }
+.account-trail-heading > strong { color: var(--muted); font: 600 9px "Cascadia Code", monospace; }
+.trail-entry { position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr); }
+.trail-entry::before { content: ""; position: absolute; top: 18px; bottom: -18px; left: 7px; width: 1px; background: #cfe1dd; }
+.trail-entry:last-child::before { display: none; }
+.trail-node { position: relative; z-index: 1; width: 15px; height: 15px; margin-top: 17px; border: 4px solid var(--teal-pale); border-radius: 50%; background: var(--teal); }
+.trail-risco .trail-node, .trail-ponto-de-atencao .trail-node { border-color: var(--coral-pale); background: var(--coral); }
+.trail-gap .trail-node { border-color: var(--amber-pale); background: var(--amber); }
+.trail-card { margin-bottom: 11px; padding: 14px 15px 11px; border: 1px solid var(--line); border-radius: 13px; background: white; }
+.trail-card-head { display: flex; justify-content: space-between; gap: 12px; }
+.trail-card-head > div { display: flex; align-items: center; gap: 8px; }
+.trail-card-head > div span { color: var(--muted); font: 600 8px "Cascadia Code", monospace; }
+.trail-card-head > div strong { color: var(--teal-dark); font-size: 9px; }
+.trail-card p { margin: 11px 0; color: var(--ink-soft); font-size: 10px; line-height: 1.6; white-space: pre-line; }
+.tracking-status { padding: 4px 7px; border-radius: 7px; font-size: 8px; font-weight: 720; white-space: nowrap; }
+.tracking-status-open { color: #ad4435; background: var(--coral-pale); }
+.tracking-status-watching { color: #99600c; background: var(--amber-pale); }
+.tracking-status-resolved { color: #087769; background: var(--teal-pale); }
+.trail-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--line); }
+.trail-card-footer > span { color: var(--muted); font-size: 8px; }
+.table-action.resolve:hover { color: var(--teal); background: var(--teal-pale); }
+.tracking-empty { display: grid; justify-items: center; gap: 7px; padding: 30px; border: 1px dashed var(--line); border-radius: 13px; color: var(--muted); text-align: center; }
+.tracking-empty svg { width: 24px; color: var(--teal); }
+.tracking-empty strong { color: var(--ink); font-size: 12px; }
+.tracking-empty span { font-size: 9px; }
+
+@media (max-width: 720px) {
+  .resource-profile-grid { grid-template-columns: 1fr; }
+  .tracking-overview { grid-template-columns: 1fr 1fr; }
+  .tracking-overview > div:nth-child(3) { grid-column: 1 / -1; border-top: 1px solid var(--line); border-left: 0; }
+  .field-row-3, .tracking-form-footer { grid-template-columns: 1fr; }
+  .allocation-row-detailed { grid-template-columns: 1fr 78px 28px; }
+  .allocation-row-detailed input:nth-of-type(1) { grid-column: 1 / -1; }
+}
+
+@media (max-width: 460px) {
+  .tracking-overview { grid-template-columns: 1fr; }
+  .tracking-overview > div { border-top: 1px solid var(--line); border-left: 0; }
+  .tracking-overview > div:first-child { border-top: 0; }
+  .tracking-overview > div:nth-child(3) { grid-column: auto; }
+  .trail-card-head, .trail-card-head > div { align-items: flex-start; flex-direction: column; }
+  .btn-track { width: 30px; padding: 0; font-size: 0; }
+  .btn-track svg { width: 14px; }
+}
+.tracking-context-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; overflow: hidden; border: 1px solid var(--line); border-radius: 13px; background: white; }
+.tracking-context-grid > div { min-width: 0; padding: 13px 14px; border-left: 1px solid var(--line); }
+.tracking-context-grid > div:first-child { border-left: 0; }
+.tracking-context-grid span { color: var(--teal); font: 720 8px "Cascadia Code", monospace; letter-spacing: .05em; text-transform: uppercase; }
+.tracking-context-grid p { margin: 7px 0 0; color: var(--ink-soft); font-size: 9px; line-height: 1.55; white-space: pre-line; }
+.tracking-team { display: grid; gap: 10px; }
+.tracking-section-title { display: flex; align-items: center; gap: 8px; }
+.tracking-section-title > svg { width: 25px; height: 25px; padding: 5px; border-radius: 7px; color: var(--teal); background: var(--teal-pale); }
+.tracking-section-title > div { display: grid; gap: 2px; }
+.tracking-section-title span { color: var(--muted); font: 700 7px "Cascadia Code", monospace; letter-spacing: .05em; text-transform: uppercase; }
+.tracking-section-title strong { font-size: 11px; }
+.tracking-team-list { display: grid; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.tracking-team-row { display: grid; grid-template-columns: 1.25fr .55fr 1.2fr; gap: 12px; padding: 11px 13px; border-top: 1px solid var(--line); }
+.tracking-team-row:first-child { border-top: 0; }
+.tracking-team-row > div { min-width: 0; display: grid; gap: 3px; }
+.tracking-team-row strong { overflow: hidden; color: var(--ink); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.tracking-team-row span { overflow: hidden; color: var(--muted); font-size: 8px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .tracking-context-grid { grid-template-columns: 1fr; }
+  .tracking-context-grid > div { border-top: 1px solid var(--line); border-left: 0; }
+  .tracking-context-grid > div:first-child { border-top: 0; }
+  .tracking-team-row { grid-template-columns: 1fr .5fr; }
+  .tracking-team-row > div:nth-child(3) { grid-column: 1 / -1; }
+}

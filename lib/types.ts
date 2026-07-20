@@ -1,12 +1,16 @@
 export type ResourceStatus = "Ativo" | "Férias" | "Inativo";
 export type EngagementType = "Projeto" | "Serviço gerenciado";
 export type EngagementStatus = "Planejamento" | "Em andamento" | "Em risco" | "Concluído";
+export type EngagementHealth = "OK" | "Ponto de atenção" | "Crítico";
+export type FollowUpCategory = "Atualização" | "Ponto de atenção" | "Gap" | "Risco" | "Decisão" | "Próximo passo";
+export type FollowUpStatus = "Aberto" | "Em acompanhamento" | "Resolvido";
 export type CertificationLevel = "Fundamental" | "Associate" | "Expert" | "Specialty";
 export type ClientStatus = "Ativo" | "Inativo";
 
 export interface Skill {
   name: string;
-  level: 1 | 2 | 3 | 4 | 5;
+  level: 0 | 1 | 2 | 3 | 4 | 5;
+  proficiency?: string;
 }
 
 export interface Resource {
@@ -19,8 +23,13 @@ export interface Resource {
   weeklyCapacity: number;
   allocatedHours: number;
   skills: Skill[];
+  experienceYears?: number | null;
+  capacityStatus?: string;
+  certifications?: string;
+  growthGoal?: string;
   createdAt?: string;
 }
+
 export interface Client {
   id: string;
   name: string;
@@ -33,10 +42,24 @@ export interface Client {
   createdAt?: string;
 }
 
-
 export interface Allocation {
   resourceId: string;
   hours: number;
+  role?: string;
+  percentage?: number;
+  sourceStatus?: string;
+  offerType?: string;
+}
+
+export interface EngagementUpdate {
+  id: string;
+  engagementId: string;
+  occurredOn: string;
+  category: FollowUpCategory;
+  status: FollowUpStatus;
+  note: string;
+  author: string;
+  createdAt?: string;
 }
 
 export interface Engagement {
@@ -51,7 +74,12 @@ export interface Engagement {
   contractedHours: number;
   consumedHours: number;
   description: string;
+  requiredSkills?: string;
+  currentStatus?: string;
+  health?: EngagementHealth;
+  consultantSnapshot?: string;
   allocations: Allocation[];
+  updates?: EngagementUpdate[];
   createdAt?: string;
 }
 
@@ -74,5 +102,6 @@ export interface PortalData {
 
 export type ResourceInput = Omit<Resource, "id" | "createdAt" | "allocatedHours">;
 export type ClientInput = Omit<Client, "id" | "createdAt">;
-export type EngagementInput = Omit<Engagement, "id" | "createdAt">;
+export type EngagementInput = Omit<Engagement, "id" | "createdAt" | "updates">;
+export type EngagementUpdateInput = Omit<EngagementUpdate, "id" | "engagementId" | "createdAt">;
 export type CertificationInput = Omit<Certification, "id" | "createdAt" | "holders"> & { holders?: number };

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Award, BriefcaseBusiness, CalendarClock, Gauge, TrendingUp, Users, Zap } from "lucide-react";
+import { ArrowRight, Award, BriefcaseBusiness, CalendarClock, Gauge, ShieldAlert, TrendingUp, Users, Zap } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { usePortalData } from "@/components/providers/portal-data-provider";
 
@@ -26,6 +26,8 @@ export function Dashboard() {
   const consumed = managedServices.reduce((sum, engagement) => sum + engagement.consumedHours, 0);
   const overloaded = activeResources.filter((resource) => resource.allocatedHours > resource.weeklyCapacity);
   const highBurn = activeEngagements.filter((engagement) => engagement.contractedHours && engagement.consumedHours / engagement.contractedHours >= .8);
+  const attentionEngagements = activeEngagements.filter((engagement) => engagement.health === "Crítico" || engagement.health === "Ponto de atenção");
+  const attentionIds = new Set([...highBurn, ...attentionEngagements].map((engagement) => engagement.id));
   const uncoveredCertification = certifications.find((certification) => certification.holders === 0);
   const labelCounts = new Map<string, number>();
   const capacityData = activeResources.map((resource) => {
@@ -60,7 +62,7 @@ export function Dashboard() {
         <article className="overview-metric">
           <div className="metric-label"><BriefcaseBusiness />Entregas ativas</div>
           <div className="metric-value">{String(activeEngagements.length).padStart(2, "0")}</div>
-          <div className="metric-context"><span className="metric-delta danger">{highBurn.length} em atenção</span></div>
+          <div className="metric-context"><span className="metric-delta danger">{attentionIds.size} em atenção</span></div>
         </article>
         <article className="overview-metric">
           <div className="metric-label"><Zap />Saldo de consultoria</div>
@@ -90,10 +92,11 @@ export function Dashboard() {
         </article>
 
         <article className="card">
-          <div className="card-header"><div><h2>Pede atenção</h2><p>Prioridades calculadas pelo radar</p></div><span className="status status-risk">{overloaded.length + highBurn.length}</span></div>
+          <div className="card-header"><div><h2>Pede atenção</h2><p>Prioridades calculadas pelo radar</p></div><span className="status status-risk">{overloaded.length + attentionIds.size}</span></div>
           <div className="alert-list">
             {overloaded.slice(0, 1).map((resource) => <div className="alert-item" key={resource.id}><div className="alert-icon"><Gauge /></div><div className="alert-copy"><strong>{resource.name} sobrealocada</strong><span>{resource.allocatedHours}h em uma semana de {resource.weeklyCapacity}h</span></div><Link className="alert-action" href="/recursos" aria-label="Ver recurso"><ArrowRight /></Link></div>)}
-            {highBurn.slice(0, 1).map((engagement) => <div className="alert-item" key={engagement.id}><div className="alert-icon warning"><CalendarClock /></div><div className="alert-copy"><strong>{engagement.name} em {Math.round(engagement.consumedHours / engagement.contractedHours * 100)}%</strong><span>{engagement.consumedHours}h consumidas de {engagement.contractedHours}h</span></div><Link className="alert-action" href="/projetos" aria-label="Ver projeto"><ArrowRight /></Link></div>)}
+            {attentionEngagements.slice(0, 1).map((engagement) => <div className="alert-item" key={engagement.id}><div className="alert-icon warning"><ShieldAlert /></div><div className="alert-copy"><strong>{engagement.name} · {engagement.health}</strong><span>{engagement.currentStatus || engagement.updates?.[0]?.note || "Entrega sinalizada no radar da conta."}</span></div><Link className="alert-action" href="/projetos" aria-label="Ver projeto"><ArrowRight /></Link></div>)}
+            {highBurn.filter((engagement) => !attentionEngagements.some((item) => item.id === engagement.id)).slice(0, 1).map((engagement) => <div className="alert-item" key={engagement.id}><div className="alert-icon warning"><CalendarClock /></div><div className="alert-copy"><strong>{engagement.name} em {Math.round(engagement.consumedHours / engagement.contractedHours * 100)}%</strong><span>{engagement.consumedHours}h consumidas de {engagement.contractedHours}h</span></div><Link className="alert-action" href="/projetos" aria-label="Ver projeto"><ArrowRight /></Link></div>)}
             {uncoveredCertification && <div className="alert-item"><div className="alert-icon info"><Award /></div><div className="alert-copy"><strong>Gap em {uncoveredCertification.code}</strong><span>Nenhum recurso possui esta certificação no catálogo atual</span></div><Link className="alert-action" href="/certificacoes" aria-label="Ver certificações"><ArrowRight /></Link></div>}
           </div>
         </article>
